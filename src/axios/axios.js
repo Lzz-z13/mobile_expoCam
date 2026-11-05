@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://io.adafruit.com/api/v2/Luizzz3//feeds/",
+  baseURL: "https://io.adafruit.com/api/v2/Luizzz3/feeds/",
   headers: {
     accept: "application/json",
     "Content-Type": "application/json",
-    "X-AIO-Key": process.env.X_AIO_KEY,
+    "X-AIO-Key": "aio_vyNg65sXKI8jRajXExIWKwH5Mox6",
   },
 });
 
@@ -24,6 +24,18 @@ const sheets = {
 
   // Consulta a última distância
   getDistancia: () => api.get("distanciaultrassom/data/last"),
+
+  // Consulta o limite atual
+  getLimite: () => api.get("limitealarme/data/last"),
+
+  // Altera o limite
+  setLimite: (valor) =>
+    api.post("limitealarme/data", {
+      value: String(valor),
+    }),
+
+  // Consulta situação de intrusão
+  getIntrusao: () => api.get("intrusao/data/last"),
 };
 
 export default sheets;
